@@ -137,10 +137,10 @@
           <div class="ref-meta">Figurális templomablakok · 2012</div>
         </div>
         <div class="ref-grid">
-          <img src="images/hejocsaba-templomepito.jpg" alt="Templomépítő Simon János molnár – ólomüveg ablak">
-          <img src="images/hejocsaba-reszlet.jpg" alt="Üvegfestmény részlet">
-          <img src="images/hejocsaba-matyas.jpg" alt="Mátyás király adománya a pálosoknak – ólomüveg ablak">
-          <img src="images/hejocsaba-templombelso.jpg" alt="Templombelső az elkészült ablakokkal">
+          <button type="button" class="ref-thumb"><img src="images/hejocsaba-templomepito.jpg" alt="Templomépítő Simon János molnár – ólomüveg ablak"></button>
+          <button type="button" class="ref-thumb"><img src="images/hejocsaba-reszlet.jpg" alt="Üvegfestmény részlet"></button>
+          <button type="button" class="ref-thumb"><img src="images/hejocsaba-matyas.jpg" alt="Mátyás király adománya a pálosoknak – ólomüveg ablak"></button>
+          <button type="button" class="ref-thumb"><img src="images/hejocsaba-templombelso.jpg" alt="Templombelső az elkészült ablakokkal"></button>
         </div>
       </div>
 
@@ -150,10 +150,10 @@
           <div class="ref-meta">Tiffany üvegfal és felülvilágító</div>
         </div>
         <div class="ref-grid">
-          <img src="images/siofok-uveg-reszlet.jpg" alt="Színes üvegfal részlet">
-          <img src="images/siofok-folyoso.jpg" alt="Ólomüveg fal és felülvilágító">
-          <img src="images/siofok-nappali.jpg" alt="Nappali a színes felülvilágítóval">
-          <img src="images/siofok-kek-enterior.jpg" alt="Enteriőr kék fényekkel">
+          <button type="button" class="ref-thumb"><img src="images/siofok-uveg-reszlet.jpg" alt="Színes üvegfal részlet"></button>
+          <button type="button" class="ref-thumb"><img src="images/siofok-folyoso.jpg" alt="Ólomüveg fal és felülvilágító"></button>
+          <button type="button" class="ref-thumb"><img src="images/siofok-nappali.jpg" alt="Nappali a színes felülvilágítóval"></button>
+          <button type="button" class="ref-thumb"><img src="images/siofok-kek-enterior.jpg" alt="Enteriőr kék fényekkel"></button>
         </div>
       </div>
 
@@ -163,10 +163,10 @@
           <div class="ref-meta">Díszüvegek, ajtóbetétek</div>
         </div>
         <div class="ref-grid">
-          <img src="images/romaipart-ajtok.jpg" alt="Tolóajtók geometrikus díszüveggel">
-          <img src="images/romaipart-reszlet.jpg" alt="Díszüveg részlet">
-          <img src="images/romaipart-enterior.jpg" alt="Enteriőr üvegbetétes ajtókkal">
-          <img src="images/romaipart-ajto.jpg" alt="Kétszárnyú ajtó díszüveg betéttel">
+          <button type="button" class="ref-thumb"><img src="images/romaipart-ajtok.jpg" alt="Tolóajtók geometrikus díszüveggel"></button>
+          <button type="button" class="ref-thumb"><img src="images/romaipart-reszlet.jpg" alt="Díszüveg részlet"></button>
+          <button type="button" class="ref-thumb"><img src="images/romaipart-enterior.jpg" alt="Enteriőr üvegbetétes ajtókkal"></button>
+          <button type="button" class="ref-thumb"><img src="images/romaipart-ajto.jpg" alt="Kétszárnyú ajtó díszüveg betéttel"></button>
         </div>
       </div>
     </div>
@@ -261,6 +261,17 @@
       <div class="footer-copy">© 2026 Horváth Mária · Minden jog fenntartva</div>
     </div>
   </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Munka nagyítva" hidden>
+    <button type="button" class="lightbox-close" id="lightbox-close" aria-label="Bezárás">&times;</button>
+    <button type="button" class="lightbox-arrow lightbox-prev" id="lightbox-prev" aria-label="Előző kép">&#8249;</button>
+    <figure class="lightbox-figure">
+      <img class="lightbox-image" id="lightbox-image" src="" alt="">
+      <figcaption class="lightbox-caption" id="lightbox-caption"></figcaption>
+    </figure>
+    <button type="button" class="lightbox-arrow lightbox-next" id="lightbox-next" aria-label="Következő kép">&#8250;</button>
+  </div>
 
   <script src="script.js"></script>
 </body>
