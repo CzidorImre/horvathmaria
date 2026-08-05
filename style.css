@@ -8,6 +8,12 @@
   --line: #e2dbc9;
   --muted: #8c8371;
   --body-text: #4c463c;
+  --logo-lead: #2E2E2C;
+  --logo-lead-dark: #F6F2E9;
+  --logo-lead-hover: #1F3F73;
+  --logo-focus: #C68A2E;
+  --ink-muted: #55503F;
+  --paper-muted: #CFC7B4;
 }
 
 * { box-sizing: border-box; }
@@ -56,20 +62,49 @@ img { max-width: 100%; }
   background: var(--cream);
 }
 
-.brand { display: flex; flex-direction: column; gap: 2px; }
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.brand:focus-visible {
+  outline: 2px solid var(--logo-focus);
+  outline-offset: 3px;
+}
+
+.brand-mark {
+  width: 31px;
+  height: 44px;
+  flex-shrink: 0;
+  color: var(--logo-lead);
+  transition: color 180ms ease;
+}
+
+@media (hover: hover) {
+  .brand:hover .brand-mark { color: var(--logo-lead-hover); }
+}
+
+.brand-mark-dark { color: var(--logo-lead-dark); }
+
+.brand-text { display: flex; flex-direction: column; gap: 2px; }
 
 .brand-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 26px;
-  font-weight: 600;
-  letter-spacing: 0.03em;
+  font-family: 'EB Garamond', 'Cormorant Garamond', serif;
+  font-size: 19px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
 }
 
 .brand-sub {
-  font-size: 11.5px;
-  letter-spacing: 0.24em;
+  font-family: 'Jost', 'Hanken Grotesk', sans-serif;
+  font-weight: 300;
+  font-size: 9px;
+  letter-spacing: 0.34em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--ink-muted);
 }
 
 .nav-links {
@@ -452,10 +487,22 @@ img { max-width: 100%; }
   gap: 20px;
 }
 
-.footer-brand { display: flex; flex-direction: column; gap: 4px; }
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.footer-brand:focus-visible {
+  outline: 2px solid var(--logo-focus);
+  outline-offset: 3px;
+}
+
+.footer-brand-text { display: flex; flex-direction: column; gap: 4px; }
 
 .footer-name {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'EB Garamond', 'Cormorant Garamond', serif;
   font-size: 20px;
   color: var(--cream);
 }
@@ -464,6 +511,7 @@ img { max-width: 100%; }
   font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
+  color: var(--paper-muted);
 }
 
 .footer-links {
@@ -497,4 +545,8 @@ img { max-width: 100%; }
   .form-row { grid-template-columns: 1fr; }
   .nav { flex-direction: column; gap: 16px; align-items: flex-start; }
   .about-portrait img { width: 100%; height: auto; }
+}
+
+@media (max-width: 640px) {
+  .brand-sub { display: none; }
 }

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" role="img" aria-label="Horváth Mária">
+  <rect width="128" height="128" fill="#1F3F73"></rect>
+  <g transform="translate(30 12) scale(0.6)">
+  <g fill="none">
+    <clipPath id="pane"><path d="M10 158 V62 Q10 22 60 6 Q110 22 110 62 V158 Z"></path></clipPath>
+    <g clip-path="url(#pane)">
+      <rect x="0" y="0" width="120" height="168" fill="#F6F2E9"></rect>
+      <path d="M60 6 Q110 22 110 62 H10 Q10 22 60 6 Z" fill="#C68A2E"></path>
+      <rect x="10" y="62" width="50" height="44" fill="#1F3F73"></rect>
+      <rect x="60" y="62" width="50" height="44" fill="#2A6357"></rect>
+      <rect x="44" y="106" width="32" height="52" fill="#8E2B36"></rect>
+      <g stroke="#F6F2E9" stroke-width="3" stroke-linecap="square">
+        <path d="M10 62 H110"></path><path d="M10 106 H110"></path><path d="M60 34 V106"></path>
+        <path d="M44 106 V158"></path><path d="M76 106 V158"></path>
+      </g>
+    </g>
+    <path d="M10 158 V62 Q10 22 60 6 Q110 22 110 62 V158 Z" stroke="#F6F2E9" stroke-width="4.5"></path>
+  </g>
+  </g>
+</svg>
