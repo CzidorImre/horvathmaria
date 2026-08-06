@@ -25,12 +25,18 @@ document.getElementById('contact-form').addEventListener('submit', function (e) 
   var lightbox = document.getElementById('lightbox');
   var lightboxImage = document.getElementById('lightbox-image');
   var lightboxCaption = document.getElementById('lightbox-caption');
+  var lightboxCounter = document.getElementById('lightbox-counter');
   var closeBtn = document.getElementById('lightbox-close');
   var prevBtn = document.getElementById('lightbox-prev');
   var nextBtn = document.getElementById('lightbox-next');
 
   var currentIndex = 0;
   var lastFocused = null;
+  var scrollY = 0;
+
+  function preload(index) {
+    new Image().src = thumbs[(index + thumbs.length) % thumbs.length].querySelector('img').src;
+  }
 
   function show(index) {
     currentIndex = (index + thumbs.length) % thumbs.length;
@@ -38,12 +44,22 @@ document.getElementById('contact-form').addEventListener('submit', function (e) 
     lightboxImage.src = img.src;
     lightboxImage.alt = img.alt;
     lightboxCaption.textContent = img.alt;
+    lightboxCounter.textContent = (currentIndex + 1) + ' / ' + thumbs.length;
+    // Neighbours are ready before the next swipe lands
+    preload(currentIndex + 1);
+    preload(currentIndex - 1);
   }
 
   function open(index) {
-    lastFocused = document.activeElement;
+    // The thumb itself, not activeElement — a tap does not always focus the button
+    lastFocused = thumbs[(index + thumbs.length) % thumbs.length];
     show(index);
     lightbox.hidden = false;
+    // Pin the page instead of just hiding overflow, or iOS scrolls behind the overlay
+    scrollY = window.pageYOffset;
+    document.body.style.position = 'fixed';
+    document.body.style.top = -scrollY + 'px';
+    document.body.style.width = '100%';
     document.body.style.overflow = 'hidden';
     closeBtn.focus();
     document.addEventListener('keydown', onKeydown);
@@ -51,9 +67,13 @@ document.getElementById('contact-form').addEventListener('submit', function (e) 
 
   function close() {
     lightbox.hidden = true;
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.width = '';
     document.body.style.overflow = '';
+    window.scrollTo(0, scrollY);
     document.removeEventListener('keydown', onKeydown);
-    if (lastFocused) lastFocused.focus();
+    if (lastFocused) lastFocused.focus({ preventScroll: true });
   }
 
   function onKeydown(e) {
@@ -77,7 +97,33 @@ document.getElementById('contact-form').addEventListener('submit', function (e) 
   closeBtn.addEventListener('click', close);
   prevBtn.addEventListener('click', function () { show(currentIndex - 1); });
   nextBtn.addEventListener('click', function () { show(currentIndex + 1); });
+
+  // Swipe left/right to move between photos on touch screens
+  var touchStartX = 0;
+  var touchStartY = 0;
+  var tracking = false;
+  var swiped = false;
+
+  lightbox.addEventListener('touchstart', function (e) {
+    tracking = e.touches.length === 1;
+    if (!tracking) return;
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+
+  lightbox.addEventListener('touchend', function (e) {
+    if (!tracking) return;
+    tracking = false;
+    var dx = e.changedTouches[0].clientX - touchStartX;
+    var dy = e.changedTouches[0].clientY - touchStartY;
+    if (Math.abs(dx) < 45 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+    swiped = true;
+    show(currentIndex + (dx < 0 ? 1 : -1));
+  }, { passive: true });
+
   lightbox.addEventListener('click', function (e) {
+    // A swipe that ends on the backdrop must not read as a dismiss tap
+    if (swiped) { swiped = false; return; }
     if (e.target === lightbox) close();
   });
 })();
